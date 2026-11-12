@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VL SPARK | Creative Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --pink:#ff4f9a;
+  --pink2:#ff9bc8;
+  --bg:#fff5fa;
+  --card:#ffffff;
+  --text:#46253a;
+  --muted:#98758b;
+  --shadow:0 10px 35px #e98ab52b;
+}
+
+body.dark {
+  --bg:#211522;
+  --card:#34243a;
+  --text:#fff0f8;
+  --muted:#d0a9c5;
+  --shadow:0 10px 35px #0004;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body {
+  font-family:Poppins,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
+
+a {text-decoration:none;color:inherit;}
+
+nav {
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 8%;
+  background:var(--card);
+  box-shadow:var(--shadow);
+}
+
+.logo {
+  font-size:27px;
+  font-weight:800;
+  color:var(--pink);
+  letter-spacing:2px;
+}
+
+.navlinks {
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+
+.navlinks a {
+  font-size:13px;
+  font-weight:600;
+  transition:.3s;
+}
+
+.navlinks a:hover {color:var(--pink);}
+
+.toggle,.menu {
+  border:none;
+  background:var(--pink);
+  color:white;
+  padding:10px 14px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.menu {display:none;}
+
+section {padding:90px 9%;}
+
+.hero {
+  min-height:85vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+.hero-content {flex:1;min-width:280px;}
+
+.tag {
+  display:inline-block;
+  background:#ffe1ef;
+  color:#e52c83;
+  padding:9px 18px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.hero h1 {
+  font-size:clamp(40px,6vw,68px);
+  line-height:1.2;
+  margin:25px 0;
+}
+
+.hero h1 span {color:var(--pink);}
+
+.hero p {
+  color:var(--muted);
+  max-width:500px;
+  line-height:1.9;
+}
+
+.buttons {
+  display:flex;
+  gap:15px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+
+.btn {
+  display:inline-block;
+  padding:13px 25px;
+  border-radius:30px;
+  background:var(--pink);
+  color:white;
+  border:2px solid var(--pink);
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn:hover {
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+}
+
+.btn.outline {
+  background:transparent;
+  color:var(--pink);
+}
+
+.profile {
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ff80b8,#ffd2e7);
+  display:grid;
+  place-items:center;
+  font-size:100px;
+  box-shadow:0 0 0 15px #ffb7d52b,0 0 60px #ff80b877;
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% {transform:translateY(-18px);}
+}
+
+.heading {
+  text-align:center;
+  margin-bottom:45px;
+}
+
+.heading h2 {font-size:36px;}
+
+.heading span {color:var(--pink);}
+
+.heading p {
+  color:var(--muted);
+  margin-top:10px;
+}
+
+.about-card,.skill,.project,.contact-card {
+  background:var(--card);
+  padding:28px;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+
+.about-card {
+  line-height:2;
+  color:var(--muted);
+}
+
+.skills-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+}
+
+.skill h3 {margin-bottom:15px;}
+
+.progress {
+  height:10px;
+  background:#ffe0ed;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress div {
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#ff4f9a,#ffafd2);
+  border-radius:20px;
+  transition:width 1.5s;
+}
+
+.filters {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.filter {
+  border:1px solid var(--pink);
+  background:transparent;
+  color:var(--pink);
+  padding:9px 20px;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+.filter.active {
+  background:var(--pink);
+  color:white;
+}
+
+.projects-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+  margin-top:30px;
+}
+
+.project {
+  transition:.3s;
+  border:1px solid #ffcee2;
+}
+
+.project:hover {transform:translateY(-9px);}
+
+.project-icon {
+  font-size:45px;
+  background:#fff0f6;
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.project p {
+  color:var(--muted);
+  margin:12px 0;
+}
+
+.project a {
+  color:var(--pink);
+  font-weight:600;
+}
+
+.contact-card {
+  max-width:650px;
+  margin:auto;
+}
+
+form {display:grid;gap:18px;}
+
+input,textarea {
+  width:100%;
+  padding:15px;
+  border:1px solid #f3b6d1;
+  border-radius:12px;
+  font-family:inherit;
+  background:var(--bg);
+  color:var(--text);
+  outline:none;
+}
+
+input:focus,textarea:focus {border-color:var(--pink);}
+
+textarea {
+  min-height:130px;
+  resize:vertical;
+}
+
+footer {
+  background:var(--card);
+  padding:35px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.socials {
+  margin-top:15px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  color:var(--pink);
+}
+
+#top {
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  border:none;
+  background:var(--pink);
+  color:white;
+  padding:14px;
+  border-radius:50%;
+  cursor:pointer;
+  display:none;
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(30px);
+  transition:all .8s;
+}
+
+.reveal.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media(max-width:750px) {
+  .menu {display:block;}
+
+  .navlinks {
+    display:none;
+    position:absolute;
+    top:70px;
+    left:0;
+    width:100%;
+    padding:25px;
+    background:var(--card);
+    flex-direction:column;
+  }
+
+  .navlinks.open {display:flex;}
+
+  .hero {
+    justify-content:center;
+    text-align:center;
+  }
+
+  .hero p {margin:auto;}
+
+  .buttons {justify-content:center;}
+
+  .profile {
+    width:220px;
+    height:220px;
+    font-size:75px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">VL SPARK.</div>
+
+  <div class="navlinks" id="navlinks">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <div style="display:flex;gap:10px">
+    <button class="toggle" id="themeBtn" aria-label="Toggle theme">🌙</button>
+    <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+  <div class="hero-content reveal">
+    <span class="tag">✨ WELCOME TO MY WORLD</span>
+
+    <h1>Hello, I'm <span>VL SPARK</span></h1>
+
+    <h2 id="typing" style="color:var(--pink)">
+      Creative Designer
+    </h2>
+
+    <p>
+      Welcome to my creative space! I love exploring technology,
+      designing beautiful things and bringing creative ideas to life.
+    </p>
+
+    <div class="buttons">
+      <a href="#projects" class="btn">Explore Projects</a>
+      <a href="#contact" class="btn outline">Contact Me</a>
+    </div>
+  </div>
+
+  <div class="profile">🎀</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+  <div class="heading reveal">
+    <h2>About <span>Me</span></h2>
+    <p>A little introduction about VL SPARK</p>
+  </div>
+
+  <div class="about-card reveal">
+    <h2 style="color:var(--pink);margin-bottom:15px">
+      My Story ✨
+    </h2>
+
+    <p>
+      Hi! I'm VL SPARK. I'm passionate about creativity,
+      technology and design. I enjoy learning new things,
+      experimenting with ideas and creating projects that
+      look beautiful and feel amazing to use.
+    </p>
+
+    <br>
+
+    <p>
+      My goal is to keep learning, improve my skills and
+      turn imaginative ideas into reality.
+    </p>
+  </div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+  <div class="heading reveal">
+    <h2>My <span>Skills</span></h2>
+    <p>Things I enjoy learning and working with</p>
+  </div>
+
+  <div class="skills-grid">
+
+    <div class="skill reveal">
+      <h3>💻 HTML</h3>
+      <div class="progress">
+        <div data-width="90%"></div>
+      </div>
+    </div>
+
+    <div class="skill reveal">
+      <h3>🎨 CSS</h3>
+      <div class="progress">
+        <div data-width="85%"></div>
+      </div>
+    </div>
+
+    <div class="skill reveal">
+      <h3>⚡ JavaScript</h3>
+      <div class="progress">
+        <div data-width="75%"></div>
+      </div>
+    </div>
+
+    <div class="skill reveal">
+      <h3>🖌️ Creative Design</h3>
+      <div class="progress">
+        <div data-width="95%"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="text-align:center;color:var(--muted);margin-top:20px;font-size:12px">
+    Sample skill percentages. Customize them to reflect your actual skills.
+  </p>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+  <div class="heading reveal">
+    <h2>My <span>Projects</span></h2>
+    <p>A collection of creative experiments</p>
+  </div>
+
+  <div class="filters">
+    <button class="filter active" data-filter="all">All</button>
+    <button class="filter" data-filter="web">Web Design</button>
+    <button class="filter" data-filter="creative">Creative</button>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project reveal" data-category="web">
+      <div class="project-icon">🌐</div>
+      <h3>Portfolio Website</h3>
+      <p>A beautiful personal website made with HTML and CSS.</p>
+      <span style="color:var(--pink)">Web Design</span>
+    </div>
+
+    <div class="project reveal" data-category="creative">
+      <div class="project-icon">🎀</div>
+      <h3>Invitation Design</h3>
+      <p>A creative and elegant invitation design project.</p>
+      <span style="color:var(--pink)">Creative</span>
+    </div>
+
+    <div class="project reveal" data-category="web">
+      <div class="project-icon">🛍️</div>
+      <h3>Shopping Website</h3>
+      <p>A modern shopping website concept.</p>
+      <span style="color:var(--pink)">Web Design</span>
+    </div>
+
+    <div class="project reveal" data-category="creative">
+      <div class="project-icon">🌸</div>
+      <h3>Creative Gallery</h3>
+      <p>A collection of colourful creative ideas.</p>
+      <span style="color:var(--pink)">Creative</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+  <div class="heading reveal">
+    <h2>Contact <span>Me</span></h2>
+    <p>Let's connect and create something amazing!</p>
+  </div>
+
+  <div class="contact-card reveal">
+
+    <form id="contactForm">
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Your Name"
+        required
+      >
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Your Email"
+        required
+      >
+
+      <textarea
+        id="message"
+        placeholder="Write your message..."
+        required
+      ></textarea>
+
+      <button class="btn" type="submit">
+        Send Message 💌
+      </button>
+
+      <p id="formMessage" style="color:var(--pink)"></p>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <h2 style="color:var(--pink)">VL SPARK.</h2>
+
+  <p>Creating ideas. Designing dreams. Inspiring creativity.</p>
+
+  <div class="socials">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+  </div>
+
+  <p style="margin-top:25px;font-size:12px">
+    © <span id="year"></span> VL SPARK. All Rights Reserved.
+  </p>
+
+</footer>
+
+<button id="top" aria-label="Back to top">↑</button>
+
+<script>
+
+// DARK AND LIGHT MODE
+
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  themeBtn.textContent =
+    document.body.classList.contains("dark") ? "☀️" : "🌙";
+});
+
+// MOBILE MENU
+
+const menuBtn = document.getElementById("menuBtn");
+const navlinks = document.getElementById("navlinks");
+
+menuBtn.addEventListener("click", () => {
+  navlinks.classList.toggle("open");
+});
+
+document.querySelectorAll(".navlinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    navlinks.classList.remove("open");
+  });
+});
+
+// TYPING ANIMATION
+
+const words = [
+  "Creative Designer",
+  "Web Developer",
+  "Dream Creator",
+  "Digital Explorer"
+];
+
+let wordIndex = 0;
+let letterIndex = 0;
+let deleting = false;
+
+function typeEffect() {
+  const current = words[wordIndex];
+  const typing = document.getElementById("typing");
+
+  typing.textContent = current.substring(0, letterIndex);
+
+  if (!deleting) {
+    letterIndex++;
+
+    if (letterIndex > current.length) {
+      deleting = true;
+      setTimeout(typeEffect, 1000);
+      return;
+    }
+  } else {
+    letterIndex--;
+
+    if (letterIndex < 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      letterIndex = 0;
+    }
+  }
+
+  setTimeout(typeEffect, deleting ? 50 : 100);
+}
+
+typeEffect();
+
+// PROJECT FILTERS
+
+const filters = document.querySelectorAll(".filter");
+const projects = document.querySelectorAll(".project");
+
+filters.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    filters.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    const category = button.dataset.filter;
+
+    projects.forEach(project => {
+
+      const show =
+        category === "all" ||
+        project.dataset.category === category;
+
+      project.style.display = show ? "block" : "none";
+
+    });
+
+  });
+
+});
+
+// SCROLL REVEAL AND SKILL BARS
+
+const observer = new IntersectionObserver(entries => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+
+      entry.target.classList.add("show");
+
+      const bar = entry.target.querySelector(".progress div");
+
+      if (bar) {
+        bar.style.width = bar.dataset.width;
+      }
+
+    }
+
+  });
+
+}, {threshold:0.15});
+
+document.querySelectorAll(".reveal,.skill").forEach(element => {
+  observer.observe(element);
+});
+
+// BACK TO TOP
+
+const topBtn = document.getElementById("top");
+
+window.addEventListener("scroll", () => {
+
+  topBtn.style.display =
+    window.scrollY > 400 ? "block" : "none";
+
+});
+
+topBtn.addEventListener("click", () => {
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+// CONTACT FORM
+
+document.getElementById("contactForm").addEventListener("submit", event => {
+
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!name || !email || !message) {
+    return;
+  }
+
+  const formMessage = document.getElementById("formMessage");
+
+  formMessage.textContent =
+    "Thank you, " + name + "! Your message is ready to send. 💗";
+
+  // This demo does not send or store messages.
+  event.target.reset();
+
+});
+
+// CURRENT YEAR
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
